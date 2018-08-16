@@ -36,6 +36,7 @@
 			android:text="@{`age:`+String.valueOf(user.age)}"/>
 
 		<ViewStub
+			android:id="@+id/view_subbb"
 			android:layout="@layout/view_sub"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"/>
