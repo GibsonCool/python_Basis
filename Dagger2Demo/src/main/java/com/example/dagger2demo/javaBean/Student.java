@@ -8,11 +8,14 @@ public class Student
 	private int age;
 
 	@Inject
-	public Student(String name, int age)
+	public Student()
 	{
-		this.name = name;
-		this.age = age;
+		this.name = "GibsonCool";
+		this.age = 24;
 	}
+
+
+
 
 	public String getName()
 	{
