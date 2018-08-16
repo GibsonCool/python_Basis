@@ -1,1 +1,1 @@
-include ':ARouterDemo', ':KotlinBindingDemo', ':Dagger2Demo'
+include ':ARouterDemo', ':KotlinBindingDemo', ':Dagger2Demo', ':KotlinDataBindingSample'
