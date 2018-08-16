@@ -2,7 +2,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:tools="http://schemas.android.com/tools"
-		xmlns:bind="http://schemas.android.com/apk/res-auto">
+		xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
 
@@ -13,6 +13,9 @@
 			name="userOb"
 			type="com.example.kotlinbindingdemo.UserObservable"></variable>
 		<variable
+			name="imgInfo"
+			type="com.example.kotlinbindingdemo.ImageInfo"></variable>
+		<variable
 			name="presenter"
 			type="com.example.kotlinbindingdemo.MainActivity.Presenter"></variable>
 
@@ -21,7 +24,7 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:gravity="center"
+		android:gravity="center_horizontal"
 		android:orientation="vertical"
 		tools:context=".MainActivity">
 
@@ -51,18 +54,39 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"/>
 
-		<include layout="@layout/view_include" bind:user="@{user}"></include>
+		<include layout="@layout/view_include" app:user="@{user}"></include>
 
 		<Button
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:onClick="@{presenter::changeImage}"
-			android:text="切换"/>
+			android:onClick="@{presenter::changeObservableName}"
+			android:text="双向绑定"/>
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@{`UserObserable:`+userOb.name}"/>
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="@{()->presenter.changeImage(imgInfo)}"
+			android:text="双向绑定lambda"/>
+
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{`imgInfo:`+imgInfo.url.get()}"/>
+
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:url="@{`BindingAdapter`+imgInfo.url.get()}"
+			/>
+
+
 
 	</LinearLayout>
 
