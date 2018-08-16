@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".MainActivity">
+
+	<Button
+		android:id="@+id/bt_frist"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="应用内跳转"/>
+
+	<Button
+		android:id="@+id/bt_two"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="应用内跳转回调"/>
+
+	<Button
+		android:id="@+id/bt_three"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="带参数的跳转"/>
+
+	<Button
+		android:id="@+id/bt_four"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="自定义分组"/>
+
+	<Button
+		android:id="@+id/bt_five"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="fragment"/>
+
+	<FrameLayout
+		android:id="@+id/fragment_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"></FrameLayout>
+
+	<Button
+		android:id="@+id/bt_url_receive"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="URL 中间跳转页"/>
+</LinearLayout>
