@@ -20,7 +20,12 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-		DaggerStudentComponent.create().inject(this);
+		/**
+		 * 前面两步都配置好了后，Student  、StudentComponent
+		 * Dagger2是基于APT编译时注解的框架， 需要先build一次，才会生成DaggerStudentComponent类
+		 * 然后就可以使用了，可以查看源码框架生成的代码做了什么
+		 */
+		DaggerStudentComponent.create().injectStudent(this);
 		binding.setStudent(student);
 	}
 }
