@@ -8,22 +8,60 @@
 		<variable
 			name="user"
 			type="com.example.dagger2demo.javaBean.User"></variable>
+
+		<variable
+			name="userParams"
+			type="com.example.dagger2demo.javaBean.UserParams"/>
+
+		<variable
+			name="userParams2"
+			type="com.example.dagger2demo.javaBean.UserParams"/>
+
+		<variable
+			name="userParams3"
+			type="com.example.dagger2demo.javaBean.UserParams"/>
+
+		<variable
+			name="userParams4"
+			type="com.example.dagger2demo.javaBean.UserParams"/>
 	</data>
 
-	<android.support.constraint.ConstraintLayout
-
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:gravity="center"
+		android:orientation="vertical"
 		tools:context=".MainActivity">
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@{`name:`+user.name}"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintLeft_toLeftOf="parent"
-			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent"/>
+			/>
 
-	</android.support.constraint.ConstraintLayout>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{`params:`+userParams.name}"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{`params2:`+userParams2.name}"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{`params3:`+userParams3.name}"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{`params4:`+userParams4.name}"
+			/>
+
+	</LinearLayout>
 </layout>
