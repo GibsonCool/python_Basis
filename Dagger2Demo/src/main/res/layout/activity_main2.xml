@@ -24,6 +24,12 @@
 		<variable
 			name="userParams4"
 			type="com.example.dagger2demo.javaBean.UserParams"/>
+
+
+		<variable
+			name="presenter2"
+			type="com.example.dagger2demo.Main2Activity.Presenter2"/>
+
 	</data>
 
 	<LinearLayout
@@ -62,6 +68,13 @@
 			android:layout_height="wrap_content"
 			android:text="@{`params4:`+userParams4.name}"
 			/>
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="@{()->presenter2.onClickLazyInit()}"
+			android:text="延迟加载"/>
+
 
 	</LinearLayout>
 </layout>

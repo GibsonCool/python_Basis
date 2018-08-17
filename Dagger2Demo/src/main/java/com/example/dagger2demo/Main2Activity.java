@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.dagger2demo.annotation.UserParamsWithEmpty;
+import com.example.dagger2demo.annotation.UserParamsWithLazy;
 import com.example.dagger2demo.annotation.UserParamsWithParameter;
 import com.example.dagger2demo.component.DaggerUserComonent;
 import com.example.dagger2demo.databinding.ActivityMain2Binding;
@@ -15,6 +17,8 @@ import com.example.dagger2demo.module.UserModule;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import dagger.Lazy;
 
 public class Main2Activity extends Activity
 {
@@ -47,6 +51,10 @@ public class Main2Activity extends Activity
 	@UserParamsWithParameter
 	UserParams userParams4;
 
+	@Inject
+	@UserParamsWithLazy
+	Lazy<UserParams> userParamsLazy;
+
 	private static final String TAG = "Main2Activity";
 
 	@Override
@@ -60,6 +68,7 @@ public class Main2Activity extends Activity
 		binding.setUserParams2(userParams2);
 		binding.setUserParams3(userParams3);
 		binding.setUserParams4(userParams4);
+		binding.setPresenter2(new Presenter2());
 		Log.e(TAG, "userParams: " + userParams);
 		Log.e(TAG, "userParams name : " + userParams.getName());
 		Log.e(TAG, "userParams2: " + userParams2);
@@ -69,5 +78,13 @@ public class Main2Activity extends Activity
 		Log.e(TAG, "userParams4: " + userParams4);
 		Log.e(TAG, "userParams4 name : " + userParams4.getName());
 
+
+	}
+
+	public class Presenter2{
+		public void onClickLazyInit(){
+			UserParams userParams = userParamsLazy.get();
+			Toast.makeText(Main2Activity.this,userParams.getName(),Toast.LENGTH_SHORT).show();
+		}
 	}
 }

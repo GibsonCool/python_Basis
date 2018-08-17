@@ -1,6 +1,7 @@
 package com.example.dagger2demo.module;
 
 import com.example.dagger2demo.annotation.UserParamsWithEmpty;
+import com.example.dagger2demo.annotation.UserParamsWithLazy;
 import com.example.dagger2demo.annotation.UserParamsWithParameter;
 import com.example.dagger2demo.javaBean.User;
 import com.example.dagger2demo.javaBean.UserParams;
@@ -82,5 +83,12 @@ public class UserModule
 	public UserParams provideUserParamsAnotationEmpty()
 	{
 		return new UserParams(" created by provideUserParamsAnotationEmpty");
+	}
+
+	@UserParamsWithLazy
+	@Provides
+	public UserParams provideUserParamsAnotationLazy()
+	{
+		return new UserParams(" created by UserParamsWithLazy");
 	}
 }
