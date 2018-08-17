@@ -1,9 +1,12 @@
 package com.example.dagger2demo;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
+import com.example.dagger2demo.component.DaggerStudentComponent;
 import com.example.dagger2demo.databinding.ActivityMainBinding;
 import com.example.dagger2demo.javaBean.Student;
 
@@ -27,5 +30,13 @@ public class MainActivity extends AppCompatActivity
 		 */
 		DaggerStudentComponent.create().injectStudent(this);
 		binding.setStudent(student);
+		binding.setPresent(new Presenter());
+
+	}
+
+	public class Presenter{
+		public void onClick(View view){
+			startActivity(new Intent(MainActivity.this,Main2Activity.class));
+		}
 	}
 }
