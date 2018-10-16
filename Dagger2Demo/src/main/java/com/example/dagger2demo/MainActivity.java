@@ -38,5 +38,9 @@ public class MainActivity extends AppCompatActivity
 		public void onClick(View view){
 			startActivity(new Intent(MainActivity.this,Main2Activity.class));
 		}
+
+		public void jumpToComponentDependencies(){
+			startActivity(new Intent(MainActivity.this, CompontentDependenciesActivity.class));
+		}
 	}
 }

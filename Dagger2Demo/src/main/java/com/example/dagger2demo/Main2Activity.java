@@ -7,16 +7,20 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.dagger2demo.annotation.UserParamsWithEmpty;
+import com.example.dagger2demo.annotation.UserParamsWithForce;
 import com.example.dagger2demo.annotation.UserParamsWithLazy;
 import com.example.dagger2demo.annotation.UserParamsWithParameter;
 import com.example.dagger2demo.component.DaggerUserComonent;
+import com.example.dagger2demo.component.UserComonent;
 import com.example.dagger2demo.databinding.ActivityMain2Binding;
+import com.example.dagger2demo.javaBean.TestSingleton;
 import com.example.dagger2demo.javaBean.User;
 import com.example.dagger2demo.javaBean.UserParams;
 import com.example.dagger2demo.module.UserModule;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
 
 import dagger.Lazy;
 
@@ -55,6 +59,21 @@ public class Main2Activity extends Activity
 	@UserParamsWithLazy
 	Lazy<UserParams> userParamsLazy;
 
+
+	@Inject
+	@UserParamsWithForce
+	Provider<UserParams> urserForce;
+
+
+	/**
+	 * 测试这两个对象是否一样
+	 */
+	@Inject
+	TestSingleton testSingleton1;
+	@Inject
+	TestSingleton testSingleton2;
+
+
 	private static final String TAG = "Main2Activity";
 
 	@Override
@@ -62,13 +81,22 @@ public class Main2Activity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		ActivityMain2Binding binding = DataBindingUtil.setContentView(this, R.layout.activity_main2);
-		DaggerUserComonent.builder().userModule(new UserModule("Params user")).build().injectUser(this);
-		binding.setUser(user);
+		/**
+		 * 由于UserModule有自己的构造方法，所以需要手动传入递进去
+		 */
+//		DaggerUserComonent.builder().build().injectUser(this);
+		UserComonent params_user = DaggerUserComonent.builder().userModule(new UserModule("Params user")).build();
+		params_user.injectUser(this);
+		User user = params_user.injectUser2();
+		Toast.makeText(this,user.getName(),Toast.LENGTH_SHORT).show();
+		binding.setUser(this.user);
 		binding.setUserParams(userParams);
 		binding.setUserParams2(userParams2);
 		binding.setUserParams3(userParams3);
 		binding.setUserParams4(userParams4);
 		binding.setPresenter2(new Presenter2());
+		binding.setTestSingleton1(testSingleton1);
+		binding.setTestSingleton2(testSingleton2);
 		Log.e(TAG, "userParams: " + userParams);
 		Log.e(TAG, "userParams name : " + userParams.getName());
 		Log.e(TAG, "userParams2: " + userParams2);
@@ -77,6 +105,16 @@ public class Main2Activity extends Activity
 		Log.e(TAG, "userParams3 name : " + userParams3.getName());
 		Log.e(TAG, "userParams4: " + userParams4);
 		Log.e(TAG, "userParams4 name : " + userParams4.getName());
+		binding.setUserParamsForce(urserForce.get());
+		UserParams force1 = urserForce.get();
+		Log.e(TAG, "urserForce: " + force1);
+		Log.e(TAG, "urserForce name : " + force1.getName());
+		UserParams force2 = urserForce.get();
+		Log.e(TAG, "urserForce2: " + force2);
+		Log.e(TAG, "urserForce2 name : " + force2.getName());
+		UserParams force3 = urserForce.get();
+		Log.e(TAG, "urserForce3: " + force3);
+		Log.e(TAG, "urserForce3 name : " + force3.getName());
 
 
 	}

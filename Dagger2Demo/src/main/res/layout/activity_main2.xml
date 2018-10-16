@@ -25,11 +25,22 @@
 			name="userParams4"
 			type="com.example.dagger2demo.javaBean.UserParams"/>
 
+		<variable
+			name="userParamsForce"
+			type="com.example.dagger2demo.javaBean.UserParams"/>
+
 
 		<variable
 			name="presenter2"
 			type="com.example.dagger2demo.Main2Activity.Presenter2"/>
 
+		<variable
+			name="testSingleton1"
+			type="com.example.dagger2demo.javaBean.TestSingleton"/>
+
+		<variable
+			name="testSingleton2"
+			type="com.example.dagger2demo.javaBean.TestSingleton"/>
 	</data>
 
 	<LinearLayout
@@ -75,6 +86,20 @@
 			android:onClick="@{()->presenter2.onClickLazyInit()}"
 			android:text="延迟加载"/>
 
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{`强制加载:`+userParamsForce.name}"
+			/>
 
+		<TextView
+			android:text="@{String.valueOf(testSingleton1)}"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+
+		<TextView
+			android:text="@{String.valueOf(testSingleton2)}"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
 	</LinearLayout>
 </layout>

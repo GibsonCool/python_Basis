@@ -1,13 +1,13 @@
 package com.example.dagger2demo.module;
 
 import com.example.dagger2demo.annotation.UserParamsWithEmpty;
+import com.example.dagger2demo.annotation.UserParamsWithForce;
 import com.example.dagger2demo.annotation.UserParamsWithLazy;
 import com.example.dagger2demo.annotation.UserParamsWithParameter;
 import com.example.dagger2demo.javaBean.User;
 import com.example.dagger2demo.javaBean.UserParams;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -32,6 +32,10 @@ public class UserModule
 
 	private String name;
 
+	/**
+	 * 如果一个 Module 没有实现任何构造方法，那么在 Component 中 Dagger2 会自动创建，如果这个 Module 实现了有参的构造方法，那么它需要在 Component 构建的时候手动传递进去
+	 * @param name
+	 */
 	public UserModule(String name)
 	{
 		this.name = name;
@@ -52,7 +56,6 @@ public class UserModule
 	 * @return
 	 */
 	@Named("params")        //用于不同需求调用有参构造方法创建对象
-	@Singleton
 	@Provides
 	public UserParams provideUserParams(String name)
 	{
@@ -90,5 +93,12 @@ public class UserModule
 	public UserParams provideUserParamsAnotationLazy()
 	{
 		return new UserParams(" created by UserParamsWithLazy");
+	}
+
+	@UserParamsWithForce
+	@Provides
+	public UserParams provideUserParamsAnotationForce()
+	{
+		return new UserParams(" created by 强制加载");
 	}
 }
