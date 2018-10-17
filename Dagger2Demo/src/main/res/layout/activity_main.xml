@@ -42,5 +42,12 @@
 			android:layout_height="wrap_content"
 			android:onClick="@{()->present.jumpToComponentDependencies()}"
 			android:text="Component依赖"/>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="@{()->present.jumpToSubComponent()}"
+			android:text="SubComponent依赖"/>
+
+
 	</LinearLayout>
 </layout>

@@ -42,5 +42,10 @@ public class MainActivity extends AppCompatActivity
 		public void jumpToComponentDependencies(){
 			startActivity(new Intent(MainActivity.this, CompontentDependenciesActivity.class));
 		}
+
+		public void jumpToSubComponent(){
+			startActivity(new Intent(MainActivity.this, SubCompontentActivity.class));
+		}
+
 	}
 }
